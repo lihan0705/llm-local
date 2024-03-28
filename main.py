@@ -10,48 +10,26 @@ from langchain.chains import ConversationChain, LLMChain
 from langchain.memory import ConversationBufferMemory, ConversationSummaryMemory
 
 
-template = """
 
-Current conversation:
-{history}
-user: {input}
-AI:"""
+llm = Ollama(model="gemma:7b", temperature=0.1, callback_manager=CallbackManager([StreamingStdOutCallbackHandler()]))
+# Now you are a chemistry phd student assisting with battery research. 
+# research focussing on developing new anode materials for sodium-ion batteries. 
+# we have to write a master thesis on this topic.
 
+def main():
+    while True:
 
-llm = Ollama(model="llama2", temperature=0, callback_manager=CallbackManager([StreamingStdOutCallbackHandler()]))
+        input_query = input("\nprompt: ")
+        if input_query == "exit":
+            break
+        if input_query.strip() == "":
+            continue
+        
+        output=llm.invoke(input=input_query)
 
-template = """
-[INST] <<SYS>>
-You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, please don't share false information.
-<</SYS>>
-here is the chat history
-{chat_history}
-
-{prompt} [/INST]
-"""
-
-prompt = PromptTemplate(
-    input_variables=["chat_history", "prompt"],
-    template=template
-)
-
-memory = ConversationBufferMemory(memory_key="chat_history",    
-                                  k=10,
-                                  return_messages=True)
-
-llm_chain = LLMChain(llm=llm, prompt=prompt, verbose=False,  memory=memory)
-
-while True:
-
-    query = input("\nQuery: ")
-    if query == "exit":
-        break
-    if query.strip() == "":
-        continue
-    
-    output=llm_chain.predict(prompt=query)
+if __name__ == "__main__":
+    main()
 
 
-    # print(conversation.prompt.template)
-    # result = llm.invoke(query)
-    # i am lihan, studying in china
+    # i am lihan, studying at TUB in Germany
+    # hi do you know anode materials for sodium-lon Battery
