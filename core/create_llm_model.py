@@ -3,6 +3,6 @@ from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 
 
-def create_ollama_model(temperature: float = 1):
-    llm = Ollama(model="gemma:7b", temperature=temperature, callback_manager=CallbackManager([StreamingStdOutCallbackHandler()]))
+def create_ollama_model(temperature: float = 0):
+    llm = Ollama(model="llama2:13b", temperature=temperature, callback_manager=CallbackManager([StreamingStdOutCallbackHandler()]))
     return llm
