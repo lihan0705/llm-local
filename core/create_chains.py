@@ -1,4 +1,4 @@
-from langchain.chains import LLMChain, ConversationChain
+from langchain.chains import LLMChain, ConversationChain, RetrievalQA
 
 def create_simple_chain(llm, prompt, memory):
     return LLMChain(prompt=prompt, 
@@ -11,3 +11,12 @@ def create_conversation_chain(llm, memory):
                     llm=llm, 
                     memory=memory, 
                     verbose=False)
+
+def create_retrieval_chain(retriever, prompt, llm, memory):
+    return RetrievalQA.from_chain_type(
+                    llm=llm,
+                    retriever=retriever,
+                    return_source_documents=True,
+                    chain_type="stuff",
+                    memory=memory, 
+                    chain_type_kwargs={'prompt': prompt})

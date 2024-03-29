@@ -7,6 +7,7 @@ run ollama + langChain (llama2)
 ```
 curl -fsSL https://ollama.com/install.sh | sh
 ollama run llama2:13b , ollama run mixtral:8x7b
+ollama pull nomic-embed-text # pull embeddings model
 ```
 # langchain learning note
 0. chain = prompt | llm | parser | memory  / LLMChain(llm,prompt,memory)

@@ -1,0 +1,3 @@
+chromadb==0.3.29
+langchain
+langchain_community
