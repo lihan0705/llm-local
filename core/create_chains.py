@@ -17,4 +17,5 @@ def create_retrieval_chain(retriever, prompt, llm, memory):
                     llm=llm,
                     retriever=retriever,
                     memory=memory, 
-                    chain_type_kwargs={'prompt': prompt})
+                    chain_type_kwargs={'prompt': prompt},
+                    verbose=True)
