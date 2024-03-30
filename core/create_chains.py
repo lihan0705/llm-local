@@ -16,7 +16,5 @@ def create_retrieval_chain(retriever, prompt, llm, memory):
     return RetrievalQA.from_chain_type(
                     llm=llm,
                     retriever=retriever,
-                    return_source_documents=True,
-                    chain_type="stuff",
                     memory=memory, 
                     chain_type_kwargs={'prompt': prompt})

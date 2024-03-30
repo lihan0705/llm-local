@@ -9,6 +9,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 build/
+chromadb/
 develop-eggs/
 dist/
 downloads/
