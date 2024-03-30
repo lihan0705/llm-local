@@ -14,11 +14,13 @@ template = """
 your answer is always clear and simple but complete
 Current conversation:
 {history}
-Human: {input}
+Human: {question}
 AI:"""
 
 
-template_retrieval= """Answer the question based on the chat history(delimited by <hs></hs>) and context(delimited by <ctx> </ctx>) below.
+template_retrieval= """
+you are nice, honest AI, your answer is always clear and simple but complete
+Please answer the question based on the chat history(delimited by <hs></hs>) and context(delimited by <ctx> </ctx>) below.
 -----------
 <ctx>
 {context}
@@ -28,7 +30,7 @@ template_retrieval= """Answer the question based on the chat history(delimited b
 {chat_history}
 </hs>
 -----------
-Question: {input}
+Question: {question}
 Answer:
 
 """
@@ -36,21 +38,21 @@ def create_simple_chat_prompt(template: str = template_chat):
     prompt = ChatPromptTemplate.from_messages(
         [("system",template),
         MessagesPlaceholder(variable_name="chat_history"),
-        ("human","{input}")]
+        ("human","{question}")]
     )
     return prompt
 
 def create_simple_prompt(template: str = template):
     prompt = PromptTemplate(
-        input_variables=["chat_history", "input"],
+        input_variables=["chat_history", "question"],
         template=template
     )
     return prompt
 
 
-def create_retrieval_prompt(template_retrieval: str = template_retrieval):
+def create_retrieval_prompt(template_retrieval):
     prompt = PromptTemplate(
-        input_variables=["context", "input", "chat_history"],
+        input_variables=["context", "question", "chat_history"],
         template=template_retrieval
     )
     return prompt

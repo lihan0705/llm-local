@@ -10,7 +10,7 @@ ollama run llama2:13b , ollama run mixtral:8x7b
 ollama pull nomic-embed-text # pull embeddings model
 ```
 # langchain learning note
-0. chain = prompt | llm | parser | memory  / LLMChain(llm,prompt,memory)
+0. chain = prompt | llm | parser | memory  / LLMChain(llm,prompt,memory), ConversationalRetrievalChain this one has memory(chat_history) and RAG 
 1. Conversational Memory, Definition: Memory is an agent's capacity of remembering previous interactions with the user (think chatbots)
 2. ChatPromptTemplate.from_messages([('system','be honest. \nFormatting Instructions: {format_instructions}]'), 
                                      ('human','{input}')])
