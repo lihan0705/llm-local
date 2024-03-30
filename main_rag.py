@@ -9,7 +9,7 @@ from core.create_llm_model import create_ollama_model
 from core.create_prompt import create_simple_prompt
 from core.create_chains import create_retrieval_chain
 from core.create_memory import create_conversation_buffer_memory
-from core.create_vectorstore import create_vectorestore_webpage
+from core.create_vectorstore import create_vectorestore_webpage, create_vectorestore_pdf
 
 def build_url_rag_chain(url):
     llm = create_ollama_model()
@@ -20,13 +20,24 @@ def build_url_rag_chain(url):
         search_kwargs = {"k": 4})
     chain = create_retrieval_chain(retriever=retriever, llm=llm, prompt=prompt, memory=memory)
     return chain
+
+
+def build_pdf_rag_chain(pdf_file):
+    llm = create_ollama_model()
+    prompt = create_simple_prompt()
+    memory = create_conversation_buffer_memory()
+    retriever = create_vectorestore_pdf(pdf_file).as_retriever(
+        search_type = "similarity",
+        search_kwargs = {"k": 4})
+    chain = create_retrieval_chain(retriever=retriever, llm=llm, prompt=prompt, memory=memory)
+    return chain
 # Now you are a chemistry phd student assisting with battery research. 
 # research focussing on developing new anode materials for sodium-ion batteries. 
 # we have to write a master thesis on this topic.
 
 def main():
-    url = "https://en.wikipedia.org/wiki/Sodium-ion_battery"
-    chain = build_url_rag_chain(url)
+    pdf_file = "/home/liangdao_hanli/Downloads/EI_2021_art00014_Ashok-Dahal.pdf"
+    chain = build_pdf_rag_chain(pdf_file)
 
     while True:
 
