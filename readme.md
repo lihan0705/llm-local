@@ -45,6 +45,27 @@ The Langchain learning note provides insights into the architecture and componen
 
 7. **Agent Execution**: The Ollama framework provides functions for executing agents and handling search results, streamlining the development process.
 
+
+## AutoGen 📚
+
+## Spark , pySpark 📚
+1. quick setup https://github.com/lyhue1991/eat_pyspark_in_10_days
+
+2. sparkSQL easy to implement, the key is how to use pyspark, load csv to spark schema, the rest is easy to activae ollama model and toolkit for conversation
+```bash
+spark_sql = SparkSQL(schema=schema)
+llm = create_ollama_model()
+toolkit = SparkSQLToolkit(db=spark_sql, llm=llm)
+
+agent_executor = create_spark_sql_agent(
+    llm=llm,
+    toolkit=toolkit,
+    verbose=True
+)
+
+agent_executor.run("Describe the titanic table")
+```
+
 ### Troubleshooting ⚠️
 
 In case of import errors related to `pdfminer`, consider uninstalling and reinstalling `pdfminer.six` using the following commands:
