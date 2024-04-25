@@ -66,6 +66,7 @@ agent_executor = create_spark_sql_agent(
 agent_executor.run("Describe the titanic table")
 ```
 
+## LLamaIndex
 ### Troubleshooting ⚠️
 
 In case of import errors related to `pdfminer`, consider uninstalling and reinstalling `pdfminer.six` using the following commands:
