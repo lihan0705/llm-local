@@ -15,8 +15,10 @@ To install Ollama, follow these steps:
 2. After installation, you can run specific models using commands like:
 
     ```bash
-    ollama run llama2:13b
-    ollama run mixtral:8x7b
+    ollama run llama3
+    ollama run llama3:70b
+    # ollama run llama2:13b
+    # ollama run mixtral:8x7b
     ```
 
 3. Additionally, you can pull specific resources like embeddings models using the following command:
