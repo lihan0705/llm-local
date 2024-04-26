@@ -69,6 +69,10 @@ agent_executor.run("Describe the titanic table")
 ```
 
 ## LLamaIndex
+
+## LoRA, QLoRA 📚
+PeftModel : freeze weight of llm, only retrain some weights in oder to improve performance
+dataset: https://huggingface.co/datasets/timdettmers/openassistant-guanaco 
 ### Troubleshooting ⚠️
 
 In case of import errors related to `pdfminer`, consider uninstalling and reinstalling `pdfminer.six` using the following commands:
